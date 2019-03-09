@@ -109,6 +109,9 @@ instance boolQueryParam :: QueryEncode Boolean where
 instance arrayQueryParam :: (QueryEncode a) => QueryEncode (Array a) where
   encodeQueryParam = foldMap encodeQueryParam
 
+instance maybeQueryParam :: (QueryEncode a) => QueryEncode (Maybe a) where
+  encodeQueryParam = foldMap encodeQueryParam
+
 class QueryEncodeFields (rl :: RowList) (row :: # Type) | rl -> row where
   encodeQueryFields :: RLProxy rl -> Record row -> QueryParams
 
